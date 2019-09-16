@@ -4,6 +4,7 @@
         <title>
             @yield('title')
         </title>
+        <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
