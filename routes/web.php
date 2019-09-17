@@ -18,6 +18,6 @@ Route::group(['prefix'=> 'admin'], function(){
    Route::get('profile/edit', 'Admin\ProfileController@edit');
 });
     
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
