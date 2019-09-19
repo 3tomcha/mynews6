@@ -12,7 +12,8 @@
                     @csrf
                     <input type="text" name="title"/>
                     <input type="text" name="body"/>
-                    <input type="submit" name="送信"/>
+                    <input type="file" name="image"/>
+                    <input type="submit" value="送信"/>
                 </form>
             </div>
         </div>
