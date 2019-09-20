@@ -14,7 +14,7 @@ class ProfileController extends Controller
 
     public function create(Request $request)
     {
-        dd($request);
+        // dd($request);
         redirect('admin/profile/create');
     }
 
