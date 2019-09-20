@@ -7,11 +7,14 @@ use App\Http\Controllers\Controller;
 
 class NewsController extends Controller
 {
-    public function add(){
+    public function add()
+    {
         return view('admin.news.create');
     }
-    public function create(Request $request){
+
+    public function create(Request $request)
+    {
         dd($request);
-        return redirect('admin/news/create');
+        // return redirect('admin/news/create');
     }
 }
