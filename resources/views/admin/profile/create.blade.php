@@ -5,15 +5,15 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>プロフィール新規作成画面</h2>
-                @if(count($errors) > 0)
+                @if($errors->any())
                         <ul>
-                            @foreach($errors->all() as $e)
-                                <li>{{ $e }}</li>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
                             @endforeach
                         </ul>
                 @endif
                 
-                <form method="POST" action="{{action('Admin\ProfileController@create')}}" >
+                <form method="POST" action="{{action('Admin\ProfileController@store')}}" >
                     @csrf
                     <div class="form-group row">
                         <label class="col-md-2">氏名</label>
