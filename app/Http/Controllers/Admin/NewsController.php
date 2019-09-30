@@ -16,7 +16,7 @@ class NewsController extends Controller
     public function index(Request $request)
     {
         $search = $request->search;
-        if ('' !== $search) {
+        if ('' != $search) {
             $posts = News::where('title', $search)->get();
         } else {
             $posts = News::all();
