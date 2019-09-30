@@ -13,8 +13,16 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+        if ('' !== $search) {
+            $posts = News::where('title', $search)->get();
+        } else {
+            $posts = News::all();
+        }
+
+        return view('admin.news.index', ['posts' => $posts, 'search' => $search]);
     }
 
     /**
