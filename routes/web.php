@@ -15,10 +15,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('news/', 'Admin\NewsController@index');
     Route::get('news/create', 'Admin\NewsController@create');
     Route::post('news/', 'Admin\NewsController@store');
+    Route::get('news/{id}', 'Admin\NewsController@edit');
+    Route::put('news/{id}', 'Admin\NewsController@update');
+    Route::delete('news/{id}', 'Admin\NewsController@destroy');
+
     Route::get('profile/create', 'Admin\ProfileController@create');
     Route::post('profile/', 'Admin\ProfileController@store');
-    // Route::get('profile/edit', 'Admin\ProfileController@edit');
-    // Route::post('profile/edit', 'Admin\ProfileController@update');
+    Route::get('profile/{id}', 'Admin\ProfileController@edit');
+    Route::put('profile/{id}', 'Admin\ProfileController@update');
+    Route::delete('profile/{id}', 'Admin\ProfileController@destroy');
 });
 
 Route::get('/', function () {

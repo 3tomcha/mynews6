@@ -71,6 +71,9 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
+        $target_profile = Profile::find($id);
+
+        return view('admin.profile.edit', ['profile' => $target_profile]);
     }
 
     /**
@@ -83,6 +86,20 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'gender' => 'required',
+            'hobby' => 'required',
+            'introduction' => 'required',
+        ]);
+        $target_profile = Profile::find($id);
+        $target_profile->name = $validatedData['name'];
+        $target_profile->gender = $validatedData['gender'];
+        $target_profile->hobby = $validatedData['hobby'];
+        $target_profile->introduction = $validatedData['introduction'];
+        $target_profile->save();
+
+        return view('admin.profile.edit', ['profile' => $target_profile]);
     }
 
     /**

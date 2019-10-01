@@ -27,12 +27,22 @@
                 <th>ID</th>
                 <th>タイトル</th>
                 <th>本文</th>
+                <th></th>
+                <th></th>
             </tr>
             @foreach($posts as $post)
             <tr>
                 <td>{{ $post->id }}</td>
                 <td>{{ $post->title }}</td>
                 <td>{{ $post->body }}</td>
+                <td><a href="{{ action('Admin\NewsController@edit', ['id' => $post->id]) }}">編集</a></td>
+                <td>
+                    <form action="{{ action('Admin\NewsController@destroy', ['id' => $post->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button>削除</button>
+                    </form>
+                </td>
             </tr>
             @endforeach
         </table>

@@ -83,6 +83,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
+        $target_news = News::find($id);
+
+        return view('admin.news.edit', ['news' => $target_news]);
     }
 
     /**
@@ -95,6 +98,27 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $target_news = News::find($id);
+        $target_news->title = $validatedData['title'];
+        $target_news->body = $validatedData['body'];
+
+        if ('on' == $request->delete) {
+            $target_news->image_path = null;
+        }
+
+        if ($request->file('image')) {
+            $path = $request->file('image')->store('images');
+            $target_news->image_path = basename($path);
+        }
+
+        $target_news->save();
+
+        return redirect('admin/news/');
     }
 
     /**
@@ -106,5 +130,6 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
+        News::destroy($id);
     }
 }
