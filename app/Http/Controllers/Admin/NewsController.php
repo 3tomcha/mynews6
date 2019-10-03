@@ -56,7 +56,7 @@ class NewsController extends Controller
         $news->body = $validatedData['body'];
 
         if (isset($validatedData['image'])) {
-            $path = $validatedData['image']->store('images');
+            $path = $validatedData['image']->store('public/images');
             $news->image_path = basename($path);
         }
         $news->save();
@@ -116,7 +116,7 @@ class NewsController extends Controller
         }
 
         if ($request->file('image')) {
-            $path = $request->file('image')->store('images');
+            $path = $request->file('image')->store('public/images');
             $target_news->image_path = basename($path);
         }
 

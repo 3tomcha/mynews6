@@ -27,10 +27,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::delete('profile/{id}', 'Admin\ProfileController@destroy');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'NewsController');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
