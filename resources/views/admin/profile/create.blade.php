@@ -12,7 +12,6 @@
                             @endforeach
                         </ul>
                 @endif
-                
                 <form method="POST" action="{{action('Admin\ProfileController@store')}}" >
                     @csrf
                     <div class="form-group row">

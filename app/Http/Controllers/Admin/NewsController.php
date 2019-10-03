@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\News;
+use App\NewsHistory;
 
 class NewsController extends Controller
 {
@@ -85,7 +86,10 @@ class NewsController extends Controller
     {
         $target_news = News::find($id);
 
-        return view('admin.news.edit', ['news' => $target_news]);
+        // 例えば$idが3だったら、そのnews_idである全てのnews_historiesを取得（最新から）
+        $target_histories = $target_news->news_histories()->orderBy('updated_at', 'desc')->get();
+
+        return view('admin.news.edit', ['news' => $target_news, 'histories' => $target_histories]);
     }
 
     /**
@@ -117,6 +121,10 @@ class NewsController extends Controller
         }
 
         $target_news->save();
+
+        $news_history = new NewsHistory();
+        $news_history->news_id = $target_news->id;
+        $news_history->save();
 
         return redirect('admin/news/');
     }

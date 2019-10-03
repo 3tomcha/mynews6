@@ -42,6 +42,16 @@
                     </div>
                     <input type="submit" class="btn btn-primary" value="更新"/>
                 </form>
+                <div class="mt-5">
+                    @if(count($histories) > 0)
+                        <h2>編集履歴</h2>
+                        <ul class="list-group">
+                        @foreach($histories as $history)
+                            <li class="list-group-item">{{ $history->updated_at }}</li>
+                        @endforeach
+                        </ul>
+                    @endif
+                </div>
             </div>
         </div>
     </div>

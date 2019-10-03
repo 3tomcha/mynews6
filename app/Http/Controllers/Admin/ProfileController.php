@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Profile;
+use App\ProfileHistory;
 
 class ProfileController extends Controller
 {
@@ -15,6 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        return 'index';
     }
 
     /**
@@ -72,8 +74,9 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $target_profile = Profile::find($id);
+        $histories = $target_profile->profile_histories()->get();
 
-        return view('admin.profile.edit', ['profile' => $target_profile]);
+        return view('admin.profile.edit', ['profile' => $target_profile, 'histories' => $histories]);
     }
 
     /**
@@ -98,6 +101,10 @@ class ProfileController extends Controller
         $target_profile->hobby = $validatedData['hobby'];
         $target_profile->introduction = $validatedData['introduction'];
         $target_profile->save();
+
+        $profile_history = new ProfileHistory();
+        $profile_history->profile_id = $id;
+        $profile_history->save();
 
         return view('admin.profile.edit', ['profile' => $target_profile]);
     }

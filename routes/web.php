@@ -19,6 +19,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::put('news/{id}', 'Admin\NewsController@update');
     Route::delete('news/{id}', 'Admin\NewsController@destroy');
 
+    Route::get('profile/', 'Admin\ProfileController@index');
     Route::get('profile/create', 'Admin\ProfileController@create');
     Route::post('profile/', 'Admin\ProfileController@store');
     Route::get('profile/{id}', 'Admin\ProfileController@edit');
