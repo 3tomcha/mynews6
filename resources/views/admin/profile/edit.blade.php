@@ -1,39 +1,17 @@
-@extends('layouts.profile')
+@extends('layouts.admin')
 @section('title', 'プロフィール編集');
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>プロフィール編集</h2>
-                @if($errors->any())
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                @endif
-                
+                @include('components.error')
                 <form method="POST" action="{{action('Admin\ProfileController@update', $profile->id)}}" >
                     @method('PUT')
                     @csrf
-                    <div class="form-group row">
-                        <label class="col-md-2">氏名</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" name="name" value="{{ $profile->name }}"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2">性別</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" name="gender" value="{{ $profile->gender }}"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2">趣味</label>
-                        <div class="col-md-10">
-                            <input class="form-control" type="text" name="hobby" value="{{ $profile->hobby }}"/>
-                        </div>
-                    </div>
+                    @include('components.form_edit', ['japanese_name' => '氏名', 'english_name' => 'name', 'value' => $profile->name])
+                    @include('components.form_edit', ['japanese_name' => '性別', 'english_name' => 'gender', 'value' => $profile->gender])
+                    @include('components.form_edit', ['japanese_name' => '趣味', 'english_name' => 'hobby', 'value' => $profile->hobby])
                     <div class="form-group row">
                         <label class="col-md-2">自己紹介欄</label>
                         <div class="col-md-10">

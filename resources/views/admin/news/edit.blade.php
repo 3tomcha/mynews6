@@ -11,21 +11,8 @@
                 <form method="POST" action="{{ action('Admin\NewsController@update', $news->id) }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
-                    @if($errors->any())
-                    <div class="alert">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ $news->title }}"/>
-                        </div>
-                    </div>
+                    @include('components.error')
+                    @include('components.form_edit', ['japanese_name' => 'タイトル', 'english_name' => 'title', 'value' => $news->title])
                     <div class="form-group row">
                         <label class="col-md-2">本文</label>
                         <div class="col-md-10">

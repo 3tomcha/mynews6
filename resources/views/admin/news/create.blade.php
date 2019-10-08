@@ -10,27 +10,9 @@
                 <h2>ニュース新規作成</h2>
                 <form method="POST" action="{{ action('Admin\NewsController@store') }}" enctype="multipart/form-data">
                     @csrf
-                    @if($errors->any())
-                    <div class="alert">
-                        <ul>
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
-                    <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}"/>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2">本文</label>
-                        <div class="col-md-10">
-                            <textarea class="form-control" name="body">{{ old('body') }}</textarea>
-                        </div>
-                    </div>
+                    @include('components.error')
+                    @include('components.form', ['japanese_name' => 'タイトル', 'english_name' => 'title'])
+                    @include('components.form', ['japanese_name' => '本文', 'english_name' => 'body'])
                     <div class="form-group row">
                         <label class="col-md-2">画像</label>
                         <div class="col-md-10">

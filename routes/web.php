@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 });
 
 Route::get('/', 'NewsController');
+Route::get('/profile', 'ProfileController');
 // Route::get('/', function () {
 //     return view('welcome');
 // });

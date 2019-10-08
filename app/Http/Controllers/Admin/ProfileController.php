@@ -26,7 +26,13 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        return view('admin.profile.create');
+        $input_names = [
+            ['japanese_name' => '氏名', 'english_name' => 'name'],
+            ['japanese_name' => '性別', 'english_name' => 'gender'],
+            ['japanese_name' => '趣味', 'english_name' => 'introduction'],
+        ];
+
+        return view('admin.profile.create', ['input_names' => $input_names]);
     }
 
     /**
